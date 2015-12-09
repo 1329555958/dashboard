@@ -16,7 +16,7 @@ from rrd import config
 from rrd.model.endpoint import Endpoint
 from rrd.model.endpoint_counter import EndpointCounter
 
-
+limit = 100000
 @app.route("/screen", methods=["GET", "POST"])
 def dash_screens():
     top_screens = DashboardScreen.gets(pid='0')
@@ -185,21 +185,16 @@ def dash_graph_add(sid):
         return redirect("/screen/%s" % sid)
 
     else:
-        limit = 100000
         gid = request.args.get("gid")
         graph = gid and DashboardGraph.get(gid)
-        options = {}
-        options['hosts'] = Endpoint.search(''.split(), limit=limit)
-        ids = []
-        for ep in options['hosts']:
-            ids.append(ep.id)
-        options['counters'] = EndpointCounter.gets_by_endpoint_ids(ids[0:1], limit=limit)
-        print(options)
+        options = qryOptions()
         return render_template("screen/graph_add.html", config=config, **locals())
 
 
 @app.route("/graph/<int:gid>/edit", methods=["GET", "POST"])
 def dash_graph_edit(gid):
+
+
     error = ""
     graph = DashboardGraph.get(gid)
     if not graph:
@@ -239,14 +234,25 @@ def dash_graph_edit(gid):
 
         error = u"修改成功了"
         if not ajax:
+            options = qryOptions()
             return render_template("screen/graph_edit.html", config=config, **locals())
         else:
             return "ok"
 
     else:
         ajax = request.args.get("ajax", "")
+        options = qryOptions()
         return render_template("screen/graph_edit.html", **locals())
 
+# 查询可供选择的endpoint以及counters
+def qryOptions():
+    options = {}
+    options['hosts'] = Endpoint.search([], limit=limit)
+    ids = []
+    for ep in options['hosts']:
+        ids.append(ep.id)
+    options['counters'] = EndpointCounter.gets_by_endpoint_ids(ids[0:1], limit=limit)
+    return options
 
 @app.route("/graph/multi_edit", methods=["GET", "POST"])
 def dash_graph_multi_edit():
