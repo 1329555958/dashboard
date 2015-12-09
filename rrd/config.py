@@ -2,14 +2,14 @@
 import os
 
 #-- dashboard db config --
-DASHBOARD_DB_HOST = "127.0.0.1"
+DASHBOARD_DB_HOST = "10.5.6.35"
 DASHBOARD_DB_PORT = 3306
 DASHBOARD_DB_USER = "root"
 DASHBOARD_DB_PASSWD = ""
 DASHBOARD_DB_NAME = "dashboard"
 
 #-- graph db config --
-GRAPH_DB_HOST = "127.0.0.1"
+GRAPH_DB_HOST = "10.5.6.35"
 GRAPH_DB_PORT = 3306
 GRAPH_DB_USER = "root"
 GRAPH_DB_PASSWD = ""
@@ -23,7 +23,7 @@ PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
 SITE_COOKIE = "open-falcon-ck"
 
 #-- query config --
-QUERY_ADDR = "http://127.0.0.1:9966"
+QUERY_ADDR = "http://10.5.6.35:9966"
 
 BASE_DIR = "/home/work/open-falcon/dashboard/"
 LOG_PATH = os.path.join(BASE_DIR,"log/")

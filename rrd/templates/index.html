@@ -39,6 +39,12 @@
                 minimumInputLength: 3
             });
 
+            //默认查询endpoint
+            fn_list_endpoints();
+            //选择endpoint之后自动刷新counters
+            $("#tbody-endpoints").delegate('.endpoint','click',function(){
+                setTimeout(fn_list_counters,100);
+            });
         })
 
 </script>
@@ -58,7 +64,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/screen">Screen</a></li>
-          <li class="dropdown">
+          <li class="dropdown" style="display: none;">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">链接<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" style="font-size:12px;">
                   <li><a href="https://github.com/open-falcon">fork me on Github</a></li>
