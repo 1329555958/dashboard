@@ -9,7 +9,7 @@ import datetime
 
 from rrd import app
 from rrd.model.screen import DashboardScreen
-from rrd.model.graph import DashboardGraph
+from rrd.model.graph import DashboardGraph, TmpGraph
 from rrd import consts
 from rrd.utils.graph_urls import generate_graph_urls
 from rrd import config
@@ -17,6 +17,8 @@ from rrd.model.endpoint import Endpoint
 from rrd.model.endpoint_counter import EndpointCounter
 
 limit = 100000
+
+
 @app.route("/screen", methods=["GET", "POST"])
 def dash_screens():
     top_screens = DashboardScreen.gets(pid='0')
@@ -193,12 +195,9 @@ def dash_graph_add(sid):
 
 @app.route("/graph/<int:gid>/edit", methods=["GET", "POST"])
 def dash_graph_edit(gid):
-
-
     error = ""
+    is_tmp_graph = False
     graph = DashboardGraph.get(gid)
-    if not graph:
-        abort(404, "no graph")
 
     all_screens = DashboardScreen.gets()
     top_screens = [x for x in all_screens if x.pid == '0']
@@ -206,10 +205,21 @@ def dash_graph_edit(gid):
     for t in top_screens:
         children.append([x for x in all_screens if x.pid == t.id])
 
-    screen = DashboardScreen.get(graph.screen_id)
-    if not screen:
-        abort(404, "no screen")
-    pscreen = DashboardScreen.get(screen.pid)
+    if not graph:
+        # 编辑临时 graph
+        graph = TmpGraph.get(gid)
+        graph = DashboardGraph.add('graph',graph.endpoints,graph.counters,top_screens[0].id)
+
+        if not graph:
+            abort(404, "no graph")
+        is_tmp_graph = True
+
+
+    # if not is_tmp_graph:
+    #     screen = DashboardScreen.get(graph.screen_id)
+    # if not screen:
+    #     abort(404, "no screen")
+    # pscreen = DashboardScreen.get(screen.pid)
 
     if request.method == "POST":
         ajax = request.form.get("ajax", "")
@@ -229,13 +239,17 @@ def dash_graph_edit(gid):
         method = request.form.get("method", '').upper()
         position = request.form.get("position", 0)
 
-        graph = graph.update(title, hosts, counters, screen_id,
-                             timespan, graph_type, method, position)
+        if is_tmp_graph:  # 如果是临时graph修改之后就添加进去
+            graph = DashboardGraph.add(title, hosts, counters, screen_id,
+                                       timespan, graph_type, method, position)
+        else:
+            graph = graph.update(title, hosts, counters, screen_id,
+                                 timespan, graph_type, method, position)
 
         error = u"修改成功了"
         if not ajax:
             options = qryOptions()
-            return redirect('/screen/'+screen_id) # 重定向到对应的screen
+            return redirect('/screen/' + graph.screen_id)  # 重定向到对应的screen
             # return render_template("screen/graph_edit.html", config=config, **locals())
         else:
             return "ok"
@@ -244,6 +258,7 @@ def dash_graph_edit(gid):
         ajax = request.args.get("ajax", "")
         options = qryOptions()
         return render_template("screen/graph_edit.html", **locals())
+
 
 # 查询可供选择的endpoint以及counters
 def qryOptions():
@@ -254,6 +269,7 @@ def qryOptions():
         ids.append(ep.id)
     options['counters'] = EndpointCounter.gets_by_endpoint_ids(ids[0:1], limit=limit)
     return options
+
 
 @app.route("/graph/multi_edit", methods=["GET", "POST"])
 def dash_graph_multi_edit():

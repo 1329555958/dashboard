@@ -14,10 +14,10 @@
             $('#hosts').val(vals.join('\n'));
             $('#counters').val(counters.join(('\n')));
             if (!vals.length) {
-                alert('必须选择endpoint');
+                alert('请选择endpoint');
                 return false;
             } else if (!counters.length) {
-                alert('必须选择counter');
+                alert('请选择counter');
                 return false;
             }
             console.log(vals, counters);
@@ -56,8 +56,8 @@
                                 <select required name="screen_id" class="form-control">
                                     {% set i = 0 %}
                                     {% for ts in top_screens %}
-                                        <option value="{{ ts.id }}"
-                                                {% if ts.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}</option>
+{#  不允许直接在顶级screen添加图表                                      <option value="{{ ts.id }}"#}
+{#                                                {% if ts.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}</option>#}
                                         {% for cs in children[i] %}
                                             <option value="{{ cs.id }}"
                                                     {% if cs.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}/{{ cs.name }}</option>
