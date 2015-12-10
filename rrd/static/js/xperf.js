@@ -19,7 +19,7 @@ function fn_list_endpoints() {
             var h = hosts[hidx];
             var line_html = '<tr>'
                 + '<td><input type="checkbox" class="endpoint" name="endpoint" data-fullname="' + h + '"></input></td>'
-                + '<td>' + h + '</td>'
+                + '<td><a href="#" onclick="fn_show_all(\'h\',\'' + h + '\');">' + h + '</a></td>'
                 + '</tr>';
             tbody_hosts.append($(line_html));
 
@@ -175,30 +175,41 @@ function fn_show_chart(counter) {
     });
     return false;
 }
-
-function fn_show_all(graph_type) {
-    var checked_hosts = new Array();
-    $("#tbody-endpoints input:checked").each(function (i, o) {
-        if ($(o).is(":visible")) {
-            var hostfullname = $(o).attr("data-fullname");
-            checked_hosts.push(hostfullname);
+/**
+ * 查看选中所有graph
+ * @param graph_type 视角
+ * @param [endpoint] 如果是传递了endpoint，就是查看这个主机上固定信息
+ * @returns {boolean}
+ */
+function fn_show_all(graph_type, endpoint) {
+    var checked_hosts = [];
+    var checked_items = [];
+    if (endpoint) {
+        graph_type = 'h';
+        checked_hosts.push(endpoint);
+        checked_items = ['mem.memfree.percent', 'cpu.user'];
+    } else {
+        $("#tbody-endpoints input:checked").each(function (i, o) {
+            if ($(o).is(":visible")) {
+                var hostfullname = $(o).attr("data-fullname");
+                checked_hosts.push(hostfullname);
+            }
+        });
+        if (checked_hosts.length === 0) {
+            alert("先选endpoint：）");
+            return false;
         }
-    });
-    if (checked_hosts.length === 0) {
-        alert("先选endpoint：）");
-        return false;
-    }
-
-    var checked_items = new Array();
-    $("#tbody-counters input:checked").each(function (i, o) {
-        if ($(o).is(":visible")) {
-            var key_ = $(o).attr("data-fullkey");
-            checked_items.push(key_);
+        $("#tbody-counters input:checked").each(function (i, o) {
+            if ($(o).is(":visible")) {
+                var key_ = $(o).attr("data-fullkey");
+                checked_items.push(key_);
+            }
+        });
+        if (checked_items.length === 0) {
+            alert("请选择counter");
+            return false;
         }
-    });
-    if (checked_items.length === 0) {
-        alert("请选择counter");
-        return false;
+
     }
 
     var w = window.open();
