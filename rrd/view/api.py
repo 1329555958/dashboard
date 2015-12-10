@@ -1,4 +1,4 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 import json
 from flask import request, abort, g
 from rrd import app
@@ -7,6 +7,7 @@ from rrd.model.tag_endpoint import TagEndpoint
 from rrd.model.endpoint import Endpoint
 from rrd.model.endpoint_counter import EndpointCounter
 from rrd.model.graph import TmpGraph
+
 
 @app.route("/api/endpoints")
 def api_endpoints():
@@ -24,7 +25,7 @@ def api_endpoints():
     # if not q and not tags:
     #     ret["msg"] = "no query params given"
     #     return json.dumps(ret)
-    
+
     endpoints = []
 
     if tags and q:
@@ -75,10 +76,10 @@ def api_get_counters():
     if not ecs:
         ret["msg"] = "no counters in graph"
         return json.dumps(ret)
-    
+
     counters_map = {}
     for x in ecs:
-        counters_map[x.counter] = [x.counter, x.type_, x.step]
+        counters_map[x.counter] = [x.counter, x.type_, x.step, x.desp]
     sorted_counters = sorted(counters_map.keys())
     sorted_values = [counters_map[x] for x in sorted_counters]
 
@@ -87,7 +88,8 @@ def api_get_counters():
 
     return json.dumps(ret)
 
-@app.route("/api/tmpgraph", methods=["POST",])
+
+@app.route("/api/tmpgraph", methods=["POST", ])
 def api_create_tmpgraph():
     d = request.data
     jdata = json.loads(d)

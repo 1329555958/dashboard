@@ -1,5 +1,7 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 from rrd.store import graph_db_conn as db_conn
+import endpoint_counter_desp as DESP
+
 
 class EndpointCounter(object):
     def __init__(self, id, endpoint_id, counter, step, type_):
@@ -8,9 +10,11 @@ class EndpointCounter(object):
         self.counter = counter
         self.step = step
         self.type_ = type_
+        self.desp = DESP.getDesp(counter)
 
     def __repr__(self):
-        return "<EndpointCounter id=%s, endpoint_id=%s, counter=%s>" %(self.id, self.endpoint_id, self.counter)
+        return "<EndpointCounter id=%s, endpoint_id=%s, counter=%s>" % (self.id, self.endpoint_id, self.counter)
+
     __str__ = __repr__
 
     @classmethod
@@ -23,10 +27,10 @@ class EndpointCounter(object):
 
         args = endpoint_ids
         for q in qs:
-            args.append("%"+q+"%")
+            args.append("%" + q + "%")
         args += [start, limit]
 
-        sql = '''select id, endpoint_id, counter, step, type from endpoint_counter where endpoint_id in (''' +placeholder+ ''') '''
+        sql = '''select id, endpoint_id, counter, step, type from endpoint_counter where endpoint_id in (''' + placeholder + ''') '''
         for q in qs:
             sql += ''' and counter like %s'''
         sql += ''' limit %s,%s'''
@@ -46,7 +50,9 @@ class EndpointCounter(object):
         placeholder = ",".join(holders)
         args = endpoint_ids + [start, limit]
 
-        cursor = db_conn.execute('''select id, endpoint_id, counter, step, type from endpoint_counter where endpoint_id in ('''+placeholder+''') limit %s, %s''', args)
+        cursor = db_conn.execute(
+            '''select id, endpoint_id, counter, step, type from endpoint_counter where endpoint_id in (''' + placeholder + ''') limit %s, %s''',
+            args)
         rows = cursor.fetchall()
         cursor and cursor.close()
 
@@ -61,7 +67,8 @@ class EndpointCounter(object):
         placeholder = ",".join(holders)
         args = ids + [start, limit]
 
-        cursor = db_conn.execute('''select id, endpoint, ts from endpoint where id in ('''+placeholder+''') and ts > %s''', args)
+        cursor = db_conn.execute(
+            '''select id, endpoint, ts from endpoint where id in (''' + placeholder + ''') and ts > %s''', args)
         rows = cursor.fetchall()
         cursor and cursor.close()
 
