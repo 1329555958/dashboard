@@ -235,7 +235,8 @@ def dash_graph_edit(gid):
         error = u"修改成功了"
         if not ajax:
             options = qryOptions()
-            return render_template("screen/graph_edit.html", config=config, **locals())
+            return redirect('/screen/'+screen_id) # 重定向到对应的screen
+            # return render_template("screen/graph_edit.html", config=config, **locals())
         else:
             return "ok"
 
