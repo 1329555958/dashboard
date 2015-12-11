@@ -189,7 +189,7 @@ function fn_show_all(graph_type, endpoint) {
     if (endpoint) {
         graph_type = 'h';
         checked_hosts.push(endpoint);
-        checked_items = ['mem.memfree.percent', 'cpu.user'];
+        checked_items = ['mem.memfree.percent', 'cpu.user','df.statistics.used.percent'];
     } else {
         $("#tbody-endpoints input:checked").each(function (i, o) {
             if ($(o).is(":visible")) {
