@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `graph`.`endpoint_counter_desp`;
 CREATE TABLE `graph`.`endpoint_counter_desp` (
   `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `counter`  VARCHAR(255)     NOT NULL DEFAULT '',
-  `desp`     VARCHAR(16)      NOT NULL DEFAULT ''
+  `desp`     VARCHAR(255)      NOT NULL DEFAULT ''
   COMMENT 'description',
   `t_modify` TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last modify time',
   PRIMARY KEY (`id`),

@@ -16,13 +16,6 @@ print 'counter descriptions'
 print(Desps)
 
 
-# counter 描述信息
-def addDesp(counter):
-    if counter:
-        counter['desp'] = Desps[counter.counter]
-    return counter
-
-
 # 获取描述信息
 def getDesp(counter):
     return Desps[counter]

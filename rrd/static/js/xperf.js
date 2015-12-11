@@ -16,10 +16,12 @@ function fn_list_endpoints() {
         var tbody_hosts = $("#tbody-endpoints");
         tbody_hosts.html("");
         for (var hidx in hosts) {
-            var h = hosts[hidx];
+            var endpoint = hosts[hidx].split(';');
+            var h = endpoint[0], url = endpoint[1];
             var line_html = '<tr>'
                 + '<td><input type="checkbox" class="endpoint" name="endpoint" data-fullname="' + h + '"></input></td>'
-                + '<td><a href="#" onclick="fn_show_all(\'h\',\'' + h + '\');">' + h + '</a></td>'
+                + '<td><a href="#" target="_blank" onclick="fn_show_all(\'h\',\'' + h + '\');">' + h + '</a></td>'
+                + (url ? ('<td><a href="' + url + '" target="_blank" >查看实时监控</a></td>') : '')
                 + '</tr>';
             tbody_hosts.append($(line_html));
 

@@ -1,21 +1,25 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 from rrd.store import graph_db_conn as db_conn
+import endpoint_dashboard_url as url
+
 
 class Endpoint(object):
     def __init__(self, id, endpoint, ts):
         self.id = str(id)
         self.endpoint = endpoint
         self.ts = ts
+        self.dashboard = url.getDashboardUrl(endpoint)
 
     def __repr__(self):
-        return "<Endpoint id=%s, endpoint=%s>" %(self.id, self.id)
+        return "<Endpoint id=%s, endpoint=%s>" % (self.id, self.id)
+
     __str__ = __repr__
 
     @classmethod
     def search(cls, qs, start=0, limit=100, deadline=0):
         args = [deadline, ]
         for q in qs:
-            args.append("%"+q+"%")
+            args.append("%" + q + "%")
         args += [start, limit]
 
         sql = '''select id, endpoint, ts from endpoint where ts > %s '''
@@ -39,7 +43,7 @@ class Endpoint(object):
 
         args = ids + [deadline, ]
         for q in qs:
-            args.append("%"+q+"%")
+            args.append("%" + q + "%")
 
         sql = '''select id, endpoint, ts from endpoint where id in (''' + placeholder + ''') and ts > %s '''
         for q in qs:
@@ -60,7 +64,8 @@ class Endpoint(object):
         placeholder = ",".join(holders)
         args = endpoints + [deadline, ]
 
-        cursor = db_conn.execute('''select id, endpoint, ts from endpoint where endpoint in (''' + placeholder + ''') and ts > %s''', args)
+        cursor = db_conn.execute(
+            '''select id, endpoint, ts from endpoint where endpoint in (''' + placeholder + ''') and ts > %s''', args)
         rows = cursor.fetchall()
         cursor and cursor.close()
 
@@ -75,7 +80,8 @@ class Endpoint(object):
         placeholder = ",".join(holders)
         args = ids + [deadline, ]
 
-        cursor = db_conn.execute('''select id, endpoint, ts from endpoint where id in (''' + placeholder + ''') and ts > %s''', args)
+        cursor = db_conn.execute(
+            '''select id, endpoint, ts from endpoint where id in (''' + placeholder + ''') and ts > %s''', args)
         rows = cursor.fetchall()
         cursor and cursor.close()
 

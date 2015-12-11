@@ -37,7 +37,7 @@ def api_endpoints():
     else:
         endpoints = Endpoint.search(q.split(), limit=limit)
 
-    endpoints_str = [x.endpoint for x in endpoints]
+    endpoints_str = [x.endpoint+';'+x.dashboard for x in endpoints]
     endpoints_str.sort()
     ret['data'] = endpoints_str
     ret['ok'] = True
