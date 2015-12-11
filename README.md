@@ -28,6 +28,11 @@ dashboard是提供给用户，以图表的方式查看push上来的数据
 
     ## default mysql user is root, default passwd is ""
     ## change mysql info in rrd/config.py if necessary
+    
+## 扩展
+
+    $ mysql -h localhost -u root -p < rrd/script/endpoint-counter-description.sql
+    $ mysql -h localhost -u root -p < rrd/script/endpoint-dashboard-url.sql
 
 
 ## Start
