@@ -208,17 +208,16 @@ def dash_graph_edit(gid):
     if not graph:
         # 编辑临时 graph
         graph = TmpGraph.get(gid)
-        graph = DashboardGraph.add('graph',graph.endpoints,graph.counters,top_screens[0].id)
+        graph = DashboardGraph.add('graph', graph.endpoints, graph.counters, 0)
 
         if not graph:
             abort(404, "no graph")
         is_tmp_graph = True
 
-
-    # if not is_tmp_graph:
-    #     screen = DashboardScreen.get(graph.screen_id)
-    # if not screen:
-    #     abort(404, "no screen")
+    if not is_tmp_graph:
+        screen = DashboardScreen.get(graph.screen_id)
+        if not screen:
+            abort(404, "no screen")
     # pscreen = DashboardScreen.get(screen.pid)
 
     if request.method == "POST":
