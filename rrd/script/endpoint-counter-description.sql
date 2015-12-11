@@ -19,24 +19,25 @@ CREATE TABLE `graph`.`endpoint_counter_desp` (
   DEFAULT CHARSET = utf8;
 
 /*初始化数据*/
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('agent.alive','Agent状态');
+/*http://www.cnblogs.com/yjf512/p/3383915.html cpu*/
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('agent.alive','Agent存活状态');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.guest','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.idle','CPU空闲');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.iowait','CPU等待IO');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.irq','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.nice','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.softirq','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.steal','');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.iowait','cpu等待磁盘写入完成时间');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.irq','中断消耗时间');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.nice','用做nice加权的进程分配的用户态cpu时间比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.softirq','软中断消耗时间');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.steal','虚拟机偷取时间');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.switches','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.system','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.user','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/boot','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/boot','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.total','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used.percent','');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.system','系统态使用的cpu时间比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.user','用户态使用的cpu时间比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/','磁盘空间剩余百分比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/boot','磁盘空间剩余百分比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/','i节点剩余百分比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/boot','i节点剩余占比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.total','磁盘总空间');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used','已使用磁盘空间');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used.percent','已使用占比');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.avgqu-sz/device=sda','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.avgrq_sz/device=sda','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.await/device=sda','');
@@ -62,9 +63,9 @@ insert into `endpoint_counter_desp` (`counter`, `desp`) values('kernel.maxproc',
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.15min','统计频率15分钟');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.1min','统计频率1分钟');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.5min','统计频率5分钟');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.memfree.percent','内存剩余百分比');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapfree.percent','交换区剩余百分比');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapused.percent','交换区使用百分比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.memfree.percent','内存剩余占比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapfree.percent','交换区剩余占比');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapused.percent','交换区使用占比');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.bytes/iface=p4p1','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.compressed/iface=p4p1','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.dropped/iface=p4p1','');
