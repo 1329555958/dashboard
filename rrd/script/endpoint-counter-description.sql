@@ -22,7 +22,7 @@ CREATE TABLE `graph`.`endpoint_counter_desp` (
 /*http://www.cnblogs.com/yjf512/p/3383915.html cpu*/
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('agent.alive','Agent存活状态');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.guest','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.idle','CPU空闲');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.idle','CPU空闲时间占比');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.iowait','cpu等待磁盘写入完成时间');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.irq','中断消耗时间');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.nice','用做nice加权的进程分配的用户态cpu时间比');
