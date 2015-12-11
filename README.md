@@ -33,6 +33,9 @@ dashboard是提供给用户，以图表的方式查看push上来的数据
 
     $ mysql -h localhost -u root -p < rrd/script/endpoint-counter-description.sql
     $ mysql -h localhost -u root -p < rrd/script/endpoint-dashboard-url.sql
+    
+    $ wget https://codeload.github.com/1329555958/dashboard/zip/master
+    
 
 
 ## Start
