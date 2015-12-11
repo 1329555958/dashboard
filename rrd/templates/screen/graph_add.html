@@ -3,26 +3,7 @@
 {% block head_js %}
     {{ super() }}
     <script>
-        function beforeSubmit() {
-            var vals = [], counters = [];
-            $('.endpoint-ckb:checked').each(function () {
-                vals.push($(this).val());
-            });
-            $('.counter-ckb:checked').each(function () {
-                counters.push($(this).val());
-            });
-            $('#hosts').val(vals.join('\n'));
-            $('#counters').val(counters.join(('\n')));
-            if(!vals.length){
-                alert('必须选择endpoint');
-                return false;
-            }else if(!counters.length){
-                alert('必须选择counter');
-                return false;
-            }
-            console.log(vals, counters);
-            return true;
-        }
+
         $(document).ready(function () {
         });
     </script>
@@ -55,8 +36,12 @@
                             <label class="control-label col-md-2" for="hosts">Endpoints列表</label>
 
                             <div class="col-md-8">
-                                <div class="panel panel-info" style="height: 200px;overflow-y: scroll;">
-                                    <div class="panel-body">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <input type="text" class="form-control" placeholder="过滤endpoint"
+                                               onkeyup="filterOptions(this.value,'hostsDiv');"/>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: scroll;" id="hostsDiv">
                                         {% for host in options.hosts %}
                                             <div class="checkbox"><label> <input type="checkbox" class="endpoint-ckb"
                                                     {% if graph.hosts and host.endpoint in graph.hosts %}
@@ -75,11 +60,15 @@
                             <label class="control-label col-md-2" for="counters">Counters列表</label>
 
                             <div class="col-md-8">
-                                <div class="panel panel-info" style="height: 200px;overflow-y: scroll;">
-                                    <div class="panel-body">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <input type="text" class="form-control" placeholder="过滤counter"
+                                               onkeyup="filterOptions(this.value,'countersDiv');"/>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: scroll;" id="countersDiv">
                                         {% for host in options.counters %}
                                             <div class="checkbox"><label> <input type="checkbox" class="counter-ckb"
-                                                                                 value="{{ host.counter }}">{{ host.counter }}
+                                                                                 value="{{ host.counter }}">{{ host.counter }}({{ host.desp }})
                                             </label></div>
                                         {% endfor %}
                                     </div>

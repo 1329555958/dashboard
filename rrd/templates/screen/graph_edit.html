@@ -3,26 +3,7 @@
 {% block head_js %}
     {{ super() }}
     <script>
-        function beforeSubmit() {
-            var vals = [], counters = [];
-            $('.endpoint-ckb:checked').each(function () {
-                vals.push($(this).val());
-            });
-            $('.counter-ckb:checked').each(function () {
-                counters.push($(this).val());
-            });
-            $('#hosts').val(vals.join('\n'));
-            $('#counters').val(counters.join(('\n')));
-            if (!vals.length) {
-                alert('请选择endpoint');
-                return false;
-            } else if (!counters.length) {
-                alert('请选择counter');
-                return false;
-            }
-            console.log(vals, counters);
-            return true;
-        }
+
         $(document).ready(function () {
         });
     </script>
@@ -56,8 +37,8 @@
                                 <select required name="screen_id" class="form-control">
                                     {% set i = 0 %}
                                     {% for ts in top_screens %}
-{#  不允许直接在顶级screen添加图表                                      <option value="{{ ts.id }}"#}
-{#                                                {% if ts.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}</option>#}
+                                        {#  不允许直接在顶级screen添加图表                                      <option value="{{ ts.id }}"#}
+                                        {#                                                {% if ts.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}</option>#}
                                         {% for cs in children[i] %}
                                             <option value="{{ cs.id }}"
                                                     {% if cs.id==graph.screen_id %}selected{% endif %}>{{ ts.name }}/{{ cs.name }}</option>
@@ -80,8 +61,12 @@
                             <label class="control-label col-md-2" for="hosts">Endpoints列表</label>
 
                             <div class="col-md-8">
-                                <div class="panel panel-info" style="height: 200px;overflow-y: scroll;">
-                                    <div class="panel-body">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <input type="text" class="form-control" placeholder="过滤endpoint"
+                                               onkeyup="filterOptions(this.value,'hostsDiv');"/>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: scroll;" id="hostsDiv">
                                         {% for host in options.hosts %}
                                             <div class="checkbox"><label> <input type="checkbox" class="endpoint-ckb"
                                                     {% if graph.hosts and host.endpoint in graph.hosts %}
@@ -100,13 +85,17 @@
                             <label class="control-label col-md-2" for="counters">Counters列表</label>
 
                             <div class="col-md-8">
-                                <div class="panel panel-info" style="height: 200px;overflow-y: scroll;">
-                                    <div class="panel-body">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <input type="text" class="form-control" placeholder="过滤counter"
+                                               onkeyup="filterOptions(this.value,'countersDiv');"/>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: scroll;" id="countersDiv">
                                         {% for host in options.counters %}
                                             <div class="checkbox"><label> <input type="checkbox" class="counter-ckb"
                                                     {% if graph.counters and host.counter in graph.counters %}
                                                                                  checked
-                                                    {% endif %} value="{{ host.counter }}">{{ host.counter }}
+                                                    {% endif %} value="{{ host.counter }}">{{ host.counter }}({{ host.desp }})
                                             </label></div>
                                         {% endfor %}
                                     </div>
