@@ -18,4 +18,4 @@ print(Desps)
 
 # 获取描述信息
 def getDesp(counter):
-    return Desps[counter]
+    return Desps.get(counter, '')

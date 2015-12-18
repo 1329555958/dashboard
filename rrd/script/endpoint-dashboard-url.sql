@@ -18,3 +18,5 @@ CREATE TABLE `graph`.`endpoint_dashboard_url` (
   ENGINE = INNODB
   DEFAULT CHARSET = utf8;
 
+ALTER TABLE graph.endpoint_dashboard_url CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
