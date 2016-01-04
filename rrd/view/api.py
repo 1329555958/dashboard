@@ -7,10 +7,13 @@ from rrd.model.tag_endpoint import TagEndpoint
 from rrd.model.endpoint import Endpoint
 from rrd.model.endpoint_counter import EndpointCounter
 from rrd.model.graph import TmpGraph
+from rrd.model.endpoint_dashboard_url import refresh as RefreshDashboardUrl
+from rrd.model.endpoint_counter_desp import refresh as RefreshCounterDesp
 
 
 @app.route("/api/endpoints")
 def api_endpoints():
+    RefreshDashboardUrl()
     ret = {
         "ok": False,
         "msg": "",
@@ -37,7 +40,7 @@ def api_endpoints():
     else:
         endpoints = Endpoint.search(q.split(), limit=limit)
 
-    endpoints_str = [x.endpoint+';'+x.dashboard for x in endpoints]
+    endpoints_str = [x.endpoint + ';' + x.dashboard for x in endpoints]
     endpoints_str.sort()
     ret['data'] = endpoints_str
     ret['ok'] = True
@@ -47,6 +50,8 @@ def api_endpoints():
 
 @app.route("/api/counters", methods=["POST"])
 def api_get_counters():
+    RefreshCounterDesp()
+
     ret = {
         "ok": False,
         "msg": "",
