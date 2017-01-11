@@ -1,9 +1,9 @@
 ### 2015-12-11
 
-* È¥µôÒ³ÃæÉÏµÄforkÁ´½Ó
-* endpoints¡¢counters ×Ô¶¯¼ÓÔØ
-* endpoint Ìí¼ÓÁËÁ½¸öÁ´½Ó£ºÖ÷»úÃûÁ´½Óµ½×Ô¶¨ÒåÍ¼±í×ÜÀÀ£¬²é¿´ÊµÊ±¼à¿ØÁ´½Óµ½agent¼à¿ØÒ³Ãæ
-* countersÌí¼ÓÖÐÎÄÃèÊöÐÅÏ¢(ÓÉÓÚÎÒÒ²²»ÖªµÀ¾ßÌåÃèÊö£¬Ä¿Ç°ÃèÊöÐÅÏ¢²»ÍêÕû)
-* Í¼±íÉÏÃæÌí¼Ó"Ìí¼Óµ½Screen"°´Å¥£¬·½±ãÌí¼Ó
-* Ìí¼Ó¡¢ÐÞ¸ÄgraphÊ± endpoints¡¢countersÌá¹©ÁÐ±íÑ¡Ôñ£¬¿ÉÉ¸Ñ¡
-* Ìí¼Ó¡¢ÐÞ¸Ägraph³É¹¦Ö®ºóÌø×ªµ½¶ÔÓ¦µÄscreen
+* åŽ»æŽ‰é¡µé¢ä¸Šçš„forké“¾æŽ¥
+* endpointsã€counters è‡ªåŠ¨åŠ è½½
+* endpoint æ·»åŠ äº†ä¸¤ä¸ªé“¾æŽ¥ï¼šä¸»æœºåé“¾æŽ¥åˆ°è‡ªå®šä¹‰å›¾è¡¨æ€»è§ˆï¼ŒæŸ¥çœ‹å®žæ—¶ç›‘æŽ§é“¾æŽ¥åˆ°agentç›‘æŽ§é¡µé¢
+* countersæ·»åŠ ä¸­æ–‡æè¿°ä¿¡æ¯(ç”±äºŽæˆ‘ä¹Ÿä¸çŸ¥é“å…·ä½“æè¿°ï¼Œç›®å‰æè¿°ä¿¡æ¯ä¸å®Œæ•´)
+* å›¾è¡¨ä¸Šé¢æ·»åŠ "æ·»åŠ åˆ°Screen"æŒ‰é’®ï¼Œæ–¹ä¾¿æ·»åŠ 
+* æ·»åŠ ã€ä¿®æ”¹graphæ—¶ endpointsã€countersæä¾›åˆ—è¡¨é€‰æ‹©ï¼Œå¯ç­›é€‰
+* æ·»åŠ ã€ä¿®æ”¹graphæˆåŠŸä¹‹åŽè·³è½¬åˆ°å¯¹åº”çš„screen

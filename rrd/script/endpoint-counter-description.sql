@@ -1,5 +1,5 @@
 /**
-* ´´½¨counter¶ÔÓ¦µÄÃèÊöĞÅÏ¢
+* åˆ›å»ºcounterå¯¹åº”çš„æè¿°ä¿¡æ¯
 * mysql -h localhost -u root --password="" < counter-desp.sql
  */
 USE graph;
@@ -18,26 +18,26 @@ CREATE TABLE `graph`.`endpoint_counter_desp` (
   ENGINE = INNODB
   DEFAULT CHARSET = utf8;
 
-/*³õÊ¼»¯Êı¾İ*/
+/*åˆå§‹åŒ–æ•°æ®*/
 /*http://www.cnblogs.com/yjf512/p/3383915.html cpu*/
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('agent.alive','Agent´æ»î×´Ì¬');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('agent.alive','Agentå­˜æ´»çŠ¶æ€');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.guest','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.idle','CPU¿ÕÏĞÊ±¼äÕ¼±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.iowait','cpuµÈ´ı´ÅÅÌĞ´ÈëÍê³ÉÊ±¼ä');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.irq','ÖĞ¶ÏÏûºÄÊ±¼ä');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.nice','ÓÃ×önice¼ÓÈ¨µÄ½ø³Ì·ÖÅäµÄÓÃ»§Ì¬cpuÊ±¼ä±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.softirq','ÈíÖĞ¶ÏÏûºÄÊ±¼ä');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.steal','ĞéÄâ»úÍµÈ¡Ê±¼ä');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.idle','CPUç©ºé—²æ—¶é—´å æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.iowait','cpuç­‰å¾…ç£ç›˜å†™å…¥å®Œæˆæ—¶é—´');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.irq','ä¸­æ–­æ¶ˆè€—æ—¶é—´');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.nice','ç”¨åšniceåŠ æƒçš„è¿›ç¨‹åˆ†é…çš„ç”¨æˆ·æ€cpuæ—¶é—´æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.softirq','è½¯ä¸­æ–­æ¶ˆè€—æ—¶é—´');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.steal','è™šæ‹Ÿæœºå·å–æ—¶é—´');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.switches','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.system','ÏµÍ³Ì¬Ê¹ÓÃµÄcpuÊ±¼ä±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.user','ÓÃ»§Ì¬Ê¹ÓÃµÄcpuÊ±¼ä±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/','´ÅÅÌ¿Õ¼äÊ£Óà°Ù·Ö±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/boot','´ÅÅÌ¿Õ¼äÊ£Óà°Ù·Ö±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/','i½ÚµãÊ£Óà°Ù·Ö±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/boot','i½ÚµãÊ£ÓàÕ¼±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.total','´ÅÅÌ×Ü¿Õ¼ä');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used','ÒÑÊ¹ÓÃ´ÅÅÌ¿Õ¼ä');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used.percent','ÒÑÊ¹ÓÃÕ¼±È');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.system','ç³»ç»Ÿæ€ä½¿ç”¨çš„cpuæ—¶é—´æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('cpu.user','ç”¨æˆ·æ€ä½¿ç”¨çš„cpuæ—¶é—´æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/','ç£ç›˜ç©ºé—´å‰©ä½™ç™¾åˆ†æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.bytes.free.percent/fstype=ext4,mount=/boot','ç£ç›˜ç©ºé—´å‰©ä½™ç™¾åˆ†æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/','ièŠ‚ç‚¹å‰©ä½™ç™¾åˆ†æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.inodes.free.percent/fstype=ext4,mount=/boot','ièŠ‚ç‚¹å‰©ä½™å æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.total','ç£ç›˜æ€»ç©ºé—´');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used','å·²ä½¿ç”¨ç£ç›˜ç©ºé—´');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('df.statistics.used.percent','å·²ä½¿ç”¨å æ¯”');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.avgqu-sz/device=sda','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.avgrq_sz/device=sda','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('disk.io.await/device=sda','');
@@ -60,12 +60,12 @@ insert into `endpoint_counter_desp` (`counter`, `desp`) values('kernel.files.all
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('kernel.files.left','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('kernel.maxfiles','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('kernel.maxproc','');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.15min','Í³¼ÆÆµÂÊ15·ÖÖÓ');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.1min','Í³¼ÆÆµÂÊ1·ÖÖÓ');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.5min','Í³¼ÆÆµÂÊ5·ÖÖÓ');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.memfree.percent','ÄÚ´æÊ£ÓàÕ¼±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapfree.percent','½»»»ÇøÊ£ÓàÕ¼±È');
-insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapused.percent','½»»»ÇøÊ¹ÓÃÕ¼±È');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.15min','ç»Ÿè®¡é¢‘ç‡15åˆ†é’Ÿ');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.1min','ç»Ÿè®¡é¢‘ç‡1åˆ†é’Ÿ');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('load.5min','ç»Ÿè®¡é¢‘ç‡5åˆ†é’Ÿ');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.memfree.percent','å†…å­˜å‰©ä½™å æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapfree.percent','äº¤æ¢åŒºå‰©ä½™å æ¯”');
+insert into `endpoint_counter_desp` (`counter`, `desp`) values('mem.swapused.percent','äº¤æ¢åŒºä½¿ç”¨å æ¯”');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.bytes/iface=p4p1','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.compressed/iface=p4p1','');
 insert into `endpoint_counter_desp` (`counter`, `desp`) values('net.if.in.dropped/iface=p4p1','');
